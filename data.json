@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Cozy Cottage",
+        "price": "$300,000",
+        "energyRating": "B",
+        "details": "A charming cottage with 2 bedrooms and 1 bathroom.",
+        "features": ["Garden", "Fireplace", "Garage"],
+        "images": ["img/img3.jpg", "img/img4.jpg"],
+        "videos": ["video1.mp4"]
+    },
+    {
+        "id": 2,
+        "title": "Modern Apartment",
+        "price": "$450,000",
+        "energyRating": "A",
+        "details": "A sleek apartment in the city center with 3 bedrooms.",
+        "features": ["Balcony", "Gym", "Pool"],
+        "images": ["img/img1.jpg", "img/img2.jpg"],
+        "videos": ["video2.mp4"]
+    }
+]

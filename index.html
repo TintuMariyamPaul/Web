@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find A Better Shelter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Better Shelter</h1>
+    </header>
+    <main id="property-list">
+        <!-- Properties will be dynamically loaded here -->
+    </main>
+
+    <div id="property-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-price"></p>
+            <p id="modal-energy-rating"></p>
+            <p id="modal-details"></p>
+            <h3>Features:</h3>
+            <ul id="modal-features"></ul>
+            <div id="modal-media"></div>
+            <h3>Book a Viewing:</h3>
+            <form id="reservation-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="date" id="date" required>
+                <input type="time" id="timeInput"><br><br>
+                <button type="submit">Book</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
