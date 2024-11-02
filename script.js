@@ -6,7 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
             properties.forEach(property => {
                 const propertyDiv = document.createElement("div");
                 propertyDiv.classList.add("property");
-                propertyDiv.innerHTML = `<h2>${property.title}</h2><p>${property.price}</p>`;
+                
+                // Display the first image in the property listing
+                const propertyImage = property.images[0] ? `
+                    <img src="${property.images[0]}" alt="${property.title} - Image" style="width: 90%; height: auto; border-radius: 4px; margin-bottom: 10px;">
+                ` : '';
+
+                propertyDiv.innerHTML = `
+                    ${propertyImage}
+                    <h2>${property.title}</h2>
+                    <p>${property.price}</p>
+                `;
+                
                 propertyDiv.onclick = () => openModal(property);
                 propertyList.appendChild(propertyDiv);
             });
@@ -17,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             document.getElementById("reservation-form").onsubmit = (event) => {
                 event.preventDefault();
-                alert("Viewing booked! We'll contact you soon.");
+                alert("Viewing booked! We'll contact you soon...");
                 modal.style.display = "none";
             };
         })
@@ -40,19 +51,24 @@ function openModal(property) {
 
     const mediaDiv = document.getElementById("modal-media");
     mediaDiv.innerHTML = "";
+
+    // Add images to the modal
     property.images.forEach(image => {
         const img = document.createElement("img");
         img.src = image;
         img.alt = `${property.title} - Image`;
-        img.style.width = "100px";
+        img.style.width = "100%"; // Set to 100% of modal width
+        img.style.maxWidth = "400px"; // Set max width
         img.style.margin = "5px";
         mediaDiv.appendChild(img);
     });
+    
+    // Add videos to the modal
     property.videos.forEach(video => {
         const vid = document.createElement("video");
         vid.src = video;
         vid.controls = true;
-        vid.style.width = "100%";
+        vid.style.width = "100%"; // Ensure videos fill the modal width
         mediaDiv.appendChild(vid);
     });
 
