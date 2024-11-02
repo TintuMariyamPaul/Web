@@ -18,5 +18,45 @@
         "features": ["Balcony", "Gym", "Pool"],
         "images": ["img/img1.jpg", "img/img2.jpg"],
         "videos": ["video2.mp4"]
+    },
+    {
+        "id": 3,
+        "title": "Villa",
+        "price": "$350,000",
+        "energyRating": "A",
+        "details": "A sleek apartment in the city center with 3 bedrooms.",
+        "features": ["Balcony", "Gym", "Pool"],
+        "images": ["img/img1.jpg", "img/img2.jpg"],
+        "videos": ["video2.mp4"]
+    },
+    {
+        "id": 4,
+        "title": "Villa",
+        "price": "$350,000",
+        "energyRating": "A",
+        "details": "A sleek apartment in the city center with 3 bedrooms.",
+        "features": ["Balcony", "Gym", "Pool"],
+        "images": ["img/img3.jpg", "img/img4.jpg"],
+        "videos": ["video2.mp4"]
+    },
+    {
+        "id": 5,
+        "title": "Villa",
+        "price": "$350,000",
+        "energyRating": "A",
+        "details": "A sleek apartment in the city center with 3 bedrooms.",
+        "features": ["Balcony", "Gym", "Pool"],
+        "images": ["img/img1.jpg", "img/img2.jpg"],
+        "videos": ["video2.mp4"]
+    },
+    {
+        "id": 6,
+        "title": "Villa",
+        "price": "$350,000",
+        "energyRating": "A",
+        "details": "A sleek apartment in the city center with 3 bedrooms.",
+        "features": ["Balcony", "Gym", "Pool"],
+        "images": ["img/img3.jpg", "img/img4.jpg"],
+        "videos": ["video2.mp4"]
     }
 ]
