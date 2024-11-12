@@ -2,75 +2,105 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("data.json")
         .then(response => response.json())
         .then(properties => {
-            const propertyList = document.getElementById("property-list");
-            properties.forEach(property => {
-                const propertyDiv = document.createElement("div");
-                propertyDiv.classList.add("property");
-                
-                // Display the first image in the property listing
-                const propertyImage = property.images[0] ? `
-                    <img src="${property.images[0]}" alt="${property.title} - Image" style="width: 90%; height: auto; border-radius: 4px; margin-bottom: 10px;">
-                ` : '';
+            const renderProperties = (propertiesToRender) => {
+                const propertyList = document.getElementById("property-list");
+                propertyList.innerHTML = '';
 
-                propertyDiv.innerHTML = `
-                    ${propertyImage}
-                    <h2>${property.title}</h2>
-                    <p>${property.price}</p>
-                `;
+                if (propertiesToRender.length === 0) {
+                    // Display message if no properties match the search
+                    const noResultsMessage = document.createElement("p");
+                    noResultsMessage.innerText = "No properties found.";
+                    noResultsMessage.classList.add("no-results-message");
+                    propertyList.appendChild(noResultsMessage);
+                    return;
+                }
                 
-                propertyDiv.onclick = () => openModal(property);
-                propertyList.appendChild(propertyDiv);
-            });
+                propertiesToRender.forEach(property => {
+                    const propertyDiv = document.createElement("div");
+                    propertyDiv.classList.add("property");
+                    
+                    const propertyImage = property.featuredImage ? `
+                        <img src="${property.featuredImage}" alt="${property.name}">
+                    ` : '';
+                    
+                    propertyDiv.innerHTML = `
+                        ${propertyImage}
+                        <h3>${property.name}</h3>
+                        <p>${property.price}</p>
+                        <p>${property.category}</p>
+                    `;
+                    
+                    propertyDiv.onclick = () => openModal(property);
+                    propertyList.appendChild(propertyDiv);
+                });
+            };
+
+            renderProperties(properties);
+
+            const searchForm = document.getElementById("search-form");
+            searchForm.onsubmit = (event) => {
+                event.preventDefault();
+                const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+                
+                const filteredProperties = properties.filter(property => {
+                    return property.name.toLowerCase().includes(searchTerm) || 
+                           property.description.toLowerCase().includes(searchTerm);
+                });
+
+                renderProperties(filteredProperties);
+            };
 
             const modal = document.getElementById("property-modal");
             const closeButton = document.querySelector(".close-button");
-            closeButton.onclick = () => modal.style.display = "none";
-            
+            closeButton.onclick = () => { modal.style.display = "none"; };
+
             document.getElementById("reservation-form").onsubmit = (event) => {
                 event.preventDefault();
+                
+                // Show the confirmation alert
                 alert("Viewing booked! We'll contact you soon...");
+                
+                // Clear the form fields after alert
+                const form = event.target;
+                form.reset();  // Reset all form elements to their default values
+                
+                // Close the modal
                 modal.style.display = "none";
             };
-        })
-        .catch(error => console.error('Error loading properties:', error));
+        });
+
+    function openModal(property) {
+        const modal = document.getElementById("property-modal");
+        document.getElementById("modal-title").innerText = property.name;
+        document.getElementById("modal-price").innerText = `Price: ${property.price}`;
+        document.getElementById("modal-energy-rating").innerText = `Energy Rating: ${property.berRating}`;
+        document.getElementById("modal-location").innerText = `Location: ${property.location}`;
+        document.getElementById("modal-bed-bath").innerText = `Bedrooms: ${property.bedrooms}, Bathrooms: ${property.bathrooms}`;
+        document.getElementById("modal-description").innerText = property.description;
+
+        const featuresList = document.getElementById("modal-features");
+        featuresList.innerHTML = "";
+        const featureItems = [`Type: ${property.type}`, `Category: ${property.category}`];
+        featureItems.forEach(feature => {
+            const li = document.createElement("li");
+            li.innerText = feature;
+            featuresList.appendChild(li);
+        });
+
+        const mediaDiv = document.getElementById("modal-media");
+        mediaDiv.innerHTML = "";
+        mediaDiv.style.display = "flex";
+        mediaDiv.style.flexWrap = "wrap";
+        
+        property.otherMedia.forEach(media => {
+            if (media.type === "image") {
+                const img = document.createElement("img");
+                img.src = media.src;
+                img.alt = `${property.name} - Image`;
+                mediaDiv.appendChild(img);
+            }
+        });
+
+        modal.style.display = "block";
+    }
 });
-
-function openModal(property) {
-    document.getElementById("modal-title").innerText = property.title;
-    document.getElementById("modal-price").innerText = property.price;
-    document.getElementById("modal-energy-rating").innerText = `Energy Rating: ${property.energyRating}`;
-    document.getElementById("modal-details").innerText = property.details;
-    
-    const featuresList = document.getElementById("modal-features");
-    featuresList.innerHTML = "";
-    property.features.forEach(feature => {
-        const li = document.createElement("li");
-        li.innerText = feature;
-        featuresList.appendChild(li);
-    });
-
-    const mediaDiv = document.getElementById("modal-media");
-    mediaDiv.innerHTML = "";
-
-    // Add images to the modal
-    property.images.forEach(image => {
-        const img = document.createElement("img");
-        img.src = image;
-        img.alt = `${property.title} - Image`;
-        img.style.width = "100%"; // Set to 100% of modal width
-        img.style.maxWidth = "400px"; // Set max width
-        img.style.margin = "5px";
-        mediaDiv.appendChild(img);
-    });
-    
-    // Add videos to the modal
-    property.videos.forEach(video => {
-        const vid = document.createElement("video");
-        vid.src = video;
-        vid.controls = true;
-        vid.style.width = "100%"; // Ensure videos fill the modal width
-        mediaDiv.appendChild(vid);
-    });
-
-    document.getElementById("property-modal").style.display = "block";
-}

@@ -1,71 +1,246 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Modern and clean font */
     margin: 0;
-    padding: 20px;
-    background-color: #cee8ef;
-    color: #333;
-    line-height: 1.6; /* Improved readability */
-    max-width: 1200px; /* Constrain content width on large screens */
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0;
+    background-color: #f4f7f6; /* Soft off-white background */
+    color: #2c3e50; /* Darker text for contrast */
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(img/bg2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-header {
+/* Basic Navbar Styles */
+nav {
+    width: 100%;
+    background-color: #2c3e50; /* Dark gray navbar */
+    padding: 15px 20px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Navbar Container Styles */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar Title (Centered) */
+.navbar-title {
+    font-family: 'Poppins', sans-serif; /* Font for title */
+    font-size: 2.2em; /* Larger title */
+    font-weight: bold;
+    color: #ecf0f1;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     text-align: center;
-    margin-bottom: 30px;
+    flex-grow: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
-    margin: 0;
+/* Navbar Links (Left side - Home Button) */
+.navbar-links {
+    display: flex;
+    align-items: center;
 }
+
+/* Home Button in Navbar */
+.navbar-links a {
+    text-decoration: none;
+    margin-right: 20px;
+    color: #ecf0f1;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #27ae60; /* Green hover effect */
+}
+
+/* Button Style for Home */
+.navbar-links button {
+    background-color: #27ae60;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.navbar-links button:hover {
+    background-color: #2ecc71;
+    transform: scale(1.1);
+}
+
+/* Navbar Search Form (Right Side) */
+.navbar-search-form {
+    display: inline;
+    align-items: center;
+}
+
+/* Search Input */
+.navbar-search-form input[type="text"] {
+    padding: 12px 15px;
+    font-size: 1.1em;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+.navbar-search-form input[type="text"]:focus {
+    border-color: #27ae60; /* Green border when focused */
+    outline: none;
+}
+
+/* Search Button */
+.navbar-search-form button {
+    padding: 12px 20px;
+    margin-left: 20px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.navbar-search-form button:hover {
+    background-color: #34495e;
+    transform: scale(1.1);
+}
+
+/* Media Query for Tablet View (900px or smaller) */
+@media (max-width: 900px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Center the title for tablet and mobile */
+    .navbar-title {
+        position: static;
+        transform: none;
+        font-size: 1.8em; /* Smaller title for tablet */
+    }
+
+    /* Stack navbar items vertically */
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    /* Adjust search form to 100% width */
+    .navbar-search-form {
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .navbar-search-form input[type="text"],
+    .navbar-search-form button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Media Query for Mobile View (600px or smaller) */
+@media (max-width: 600px) {
+    .navbar-title {
+        font-size: 1.5em; /* Further reduce font size on mobile */
+    }
+
+    .navbar-links {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-search-form {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navbar-search-form input[type="text"],
+    .navbar-search-form button {
+        width: 100%; /* Full width on mobile */
+    }
+
+    .navbar-links button {
+        width: 100%; /* Make the button full-width for mobile */
+    }
+}
+
 
 /* Property Listings */
+/* Styles for the property list container */
+#property-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 55px; /* Space between property cards */
+    justify-content: center; /* Center-align items within the container */
+    max-width: 1200px; /* Optional: Limit the width of the content area */
+    margin: 20px auto; /* Center the container horizontally on the page */
+    padding: 0 20px;
+}
+
+/* Styles for individual property cards */
 .property {
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 5px;
-    margin: 15px;
-    background-color: #fff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: calc(30.33% - 30px); /* 3 columns layout */
-    aspect-ratio: 1; /* Ensure square shape */
-    display: inline-block;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: calc(25% - 40px); /* Adjust card width; can be changed as needed */
+    max-width: 300px;
+    display: flex;
     flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center-align content within the card */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .property img {
-    width: 90%; /* Increased width of images */
-    height: 90%; /* Maintain square aspect */
-    max-width: none; /* Prevent max width constraint */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 4px;
-    margin-bottom: 10px;
-    margin-left: 17px;
-    margin-right: 15px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
-.property:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .property {
+        width: calc(33.33% - 40px); /* 3 columns */
+    }
 }
 
-.property h2 {
-    font-size: 1.5em;
-    color: #2980b9;
-    margin: 0 0 10px;
+@media (max-width: 900px) {
+    .property {
+        width: calc(50% - 40px); /* 2 columns */
+    }
 }
 
-.property p {
-    font-size: 1.1em;
-    color: #7f8c8d;
+@media (max-width: 600px) {
+    .property {
+        width: calc(100% - 40px); /* 1 column, full width */
+    }
 }
+
 
 /* Modal Styles */
 .modal {
@@ -89,59 +264,32 @@ h1 {
 .modal-content {
     background-color: #fff;
     margin: 10% auto;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 30px;
+    border-radius: 10px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 600px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Close Button */
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: #e74c3c;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Modal Content Styles */
 .modal h2 {
-    font-size: 2em;
-    color: #2c3e50;
+    font-size: 2.5em;
+    color: #27ae60; /* Green */
 }
 
 .modal p {
-    font-size: 1.1em;
+    font-size: 1.2em;
     line-height: 1.5;
-}
-
-.modal ul {
-    list-style-type: square;
-    padding-left: 20px;
 }
 
 .modal img {
     width: 100%;
-    max-width: 800px; /* Increased max width in the modal */
-    border-radius: 4px;
-    margin: 5px 0;
+    max-width: 800px;
+    border-radius: 8px;
+    margin: 15px 0;
+    
 }
 
-.modal video {
-    margin-top: 10px;
-    border-radius: 4px;
-    width: 100%;
-    max-width: 400px;
-}
 
 /* Reservation Form Styles */
 form {
@@ -155,10 +303,10 @@ input[type="email"],
 input[type="date"],
 input[type="time"] {
     padding: 12px;
-    margin: 5px 0;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 1.1em;
     transition: border-color 0.3s;
 }
 
@@ -166,35 +314,36 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="date"]:focus,
 input[type="time"]:focus {
-    border-color: #2980b9;
+    border-color: #27ae60; /* Focus border color - green */
     outline: none;
 }
 
 button {
-    padding: 12px;
-    background-color: #2980b9;
+    padding: 14px;
+    background-color: #27ae60; /* Green button */
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #3498db;
-    transform: scale(1.05);
+    background-color: #2ecc71; /* Lighter green */
+    transform: scale(1.1);
 }
 
 /* Link Hover Effects */
 a {
-    color: #2980b9;
+    color: #27ae60; /* Green links */
     text-decoration: none;
+    font-weight: 500;
     transition: color 0.3s;
 }
 
 a:hover {
-    color: #3498db;
+    color: #2ecc71; /* Lighter green hover effect */
     text-decoration: underline;
 }
 
@@ -203,37 +352,116 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Footer Styles */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #2c3e50; /* Dark gray footer */
+    color: white;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
 /* Responsive Styles */
+@media (max-width: 1200px) {
+    .property {
+        width: calc(33.33% - 30px); /* 3 columns layout for medium-sized screens */
+    }
+
+    .navbar-links {
+        font-size: 1em; /* Smaller font for navbar links */
+    }
+}
+
 @media (max-width: 900px) {
     .property {
         width: calc(50% - 30px); /* 2 columns layout */
+    }
+
+    .navbar-links {
+        flex-direction: column; /* Stack navbar links vertically */
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .navbar-search-form {
+        margin-top: 10px;
+    }
+
+    .navbar-search-form input[type="text"],
+    .navbar-search-form button {
+        font-size: 1em; /* Smaller input and button */
+        padding: 10px;
+    }
+
+    footer {
+        font-size: 1.1em; /* Slightly smaller footer text */
     }
 }
 
 @media (max-width: 600px) {
     .property {
-        width: calc(100% - 30px); /* Full width on small screens */
+        width: calc(100% - 30px); /* Single column layout on small screens */
     }
 
-    .modal-content {
-        width: 90%;
-        padding: 15px;
+    .navbar-title {
+        font-size: 1.8em; /* Smaller title font */
     }
 
-    h1 {
-        font-size: 2em;
+    .navbar-links a {
+        font-size: 1em; /* Smaller links */
+        margin-right: 10px;
     }
 
-    .property h2 {
-        font-size: 1.4em;
+    .navbar-links button {
+        font-size: 1em;
+        padding: 10px 20px;
     }
 
-    input[type="text"],
-    input[type="email"] {
-        font-size: 0.9em;
+    footer {
+        font-size: 1em; /* Even smaller footer text */
     }
+}
 
-    button {
-        font-size: 0.9em;
-    }
+/* Close Button */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #e74c3c; /* Red close button */
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Modal media container */
+#modal-media {
+    display: flex;
+    flex-wrap: wrap;      /* Allow images to wrap on smaller screens */
+    gap: 10px;            /* Space between images */
+    justify-content: center;  /* Center align images within modal */
+}
+
+#modal-media img {
+    flex: 1 1 calc(33% - 10px); /* 3 images per row, with a gap */
+    max-width: 150px;           /* Control max-width for smaller screens */
+    height: auto;               /* Keep images responsive */
+    margin: 5px;                /* Add margin around images */
+    border-radius: 8px;         /* Optional: rounded corners for a cleaner look */
+}
+.no-results-message {
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
 }
